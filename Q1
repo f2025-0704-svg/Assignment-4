@@ -1,0 +1,78 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+const int DAYS = 7;
+const int TIMES = 4;
+
+void inputTemperatures(double temps[DAYS][TIMES]);
+void findHighLow(double temps[DAYS][TIMES], double &highest, double &lowest);
+void calculateDailyAverage(double temps[DAYS][TIMES], double avg[DAYS]);
+void displayResults(double temps[DAYS][TIMES], double avg[DAYS], double highest, double lowest);
+
+int main() {
+    double temperatures[DAYS][TIMES];
+    double dailyAverage[DAYS];
+    double highestTemp, lowestTemp;
+
+    inputTemperatures(temperatures);
+    findHighLow(temperatures, highestTemp, lowestTemp);
+    calculateDailyAverage(temperatures, dailyAverage);
+    displayResults(temperatures, dailyAverage, highestTemp, lowestTemp);
+
+    return 0;
+}
+
+void inputTemperatures(double temps[DAYS][TIMES]) {
+    cout << "Enter temperature readings for 7 days (4 readings per day):\n";
+    for (int i = 0; i < DAYS; i++) {
+        cout << "\nDay " << i + 1 << ":\n";
+        for (int j = 0; j < TIMES; j++) {
+            cout << "  Reading " << j + 1 << ": ";
+            cin >> temps[i][j];
+        }
+    }
+}
+
+void findHighLow(double temps[DAYS][TIMES], double &highest, double &lowest) {
+    highest = temps[0][0];
+    lowest = temps[0][0];
+
+    for (int i = 0; i < DAYS; i++) {
+        for (int j = 0; j < TIMES; j++) {
+            if (temps[i][j] > highest)
+                highest = temps[i][j];
+            if (temps[i][j] < lowest)
+                lowest = temps[i][j];
+        }
+    }
+}
+void calculateDailyAverage(double temps[DAYS][TIMES], double avg[DAYS]) {
+    for (int i = 0; i < DAYS; i++) {
+        double sum = 0;
+        for (int j = 0; j < TIMES; j++) {
+            sum += temps[i][j];
+        }
+        avg[i] = sum / TIMES;
+    }
+}
+void displayResults(double temps[DAYS][TIMES], double avg[DAYS], double highest, double lowest) {
+    cout << "\n\n Temperature Report \n\n";
+    cout << setw(10) << "Day"
+         << setw(15) << "Readings"
+         << setw(15) << "Average\n";
+
+
+    for (int i = 0; i < DAYS; i++) {
+        cout << setw(10) << i + 1 << "  ";
+        for (int j = 0; j < TIMES; j++) {
+            cout << temps[i][j] << " ";
+        }
+        cout << setw(10) << avg[i];
+        cout << endl;
+    }
+
+    cout << "\nHighest temp of week: " << highest;
+    cout << "\nLowest temp of week: " << lowest << endl;
+}
+
