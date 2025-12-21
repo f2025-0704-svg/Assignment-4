@@ -1,0 +1,26 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> nums = {1, 2, 3, 4, 2};
+
+    bool hasDuplicate = false;
+
+    for (int i = 0; i < nums.size(); i++) {
+        for (int j = i + 1; j < nums.size(); j++) {
+            if (nums[i] == nums[j]) {
+                hasDuplicate = true;
+                break;
+            }
+        }
+    }
+
+    if (hasDuplicate) {
+        cout << "Vector contains duplicates.";
+    } else {
+        cout << "Vector does not contain duplicates.";
+    }
+
+    return 0;
+}
