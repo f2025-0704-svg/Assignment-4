@@ -1,0 +1,23 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    int N;
+    cout << "Enter number of elements: ";
+    cin >> N;
+
+    vector<int> v(N);
+
+    cout << "Enter elements:\n";
+    for (int i = 0; i < N; i++) {
+        cin >> v[i];
+    }
+
+    cout << "You entered: ";
+    for (int x : v) {
+        cout << x << " ";
+    }
+
+    return 0;
+}
