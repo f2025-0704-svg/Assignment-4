@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    vector<int> v1 = {1, 2, 3, 4, 5};
+    vector<int> v2 = {1, 2, 4, 5}; 
+
+    int missing;
+
+    for (int i = 0; i < v1.size(); i++) {
+        bool found = false;
+
+        for (int j = 0; j < v2.size(); j++) {
+            if (v1[i] == v2[j]) {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            missing = v1[i];
+            break;
+        }
+    }
+
+    cout << "Missing element is: " << missing;
+
+    return 0;
+}
